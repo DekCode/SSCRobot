@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SSCRobot.Common\SSCRobot.Common.csproj" />
+    <ProjectReference Include="..\SSCRobot.Services\SSCRobot.Services.csproj" />
+  </ItemGroup>
+
 </Project>

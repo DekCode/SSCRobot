@@ -1,4 +1,5 @@
 ﻿using SSCRobot.Common.Enums;
+using System.Drawing;
 
 namespace SSCRobot.Common.Models
 {
@@ -10,14 +11,9 @@ namespace SSCRobot.Common.Models
         public string Name { get; init; } = null!;
 
         /// <summary>
-        /// Position X
+        /// Position
         /// </summary>
-        public int PositionX { get; init; }
-
-        /// <summary>
-        /// Position Y
-        /// </summary>
-        public int PositionY { get; init; }
+        public Point Position { get; init; }
 
         /// <summary>
         /// Facing direction

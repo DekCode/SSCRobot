@@ -1,4 +1,5 @@
 ﻿using SSCRobot.Common.Enums;
+using SSCRobot.Common.Helpers;
 using SSCRobot.Common.Models;
 using System.Drawing;
 
@@ -28,7 +29,7 @@ namespace SSCRobot.Services
             },
             // -1 horizontal unit
             {
-                DirectionType.East,
+                DirectionType.West,
                 new Size(-1, 0)
             }
         };
@@ -56,19 +57,15 @@ namespace SSCRobot.Services
         /// <param name="board"></param>
         public void Move(Robot robot, Board board)
         {
+            ArgumentNullException.ThrowIfNull(robot);
+            ArgumentNullException.ThrowIfNull(board);
+
             // Get new position based on the direction
             var vector = _vectors[robot.FacingDirection];
             var newPosition = robot.Position + vector;
 
             // If the point is out of bound, ignore.
-            // Notice that point is zero based index
-            // Check horizontally
-            if (newPosition.X < 0 || newPosition.X >= board.Width)
-            {
-                return;
-            }
-            // Check vertically
-            if (newPosition.Y < 0 || newPosition.Y >= board.Height)
+            if (!board.IsOnBoard(newPosition))
             {
                 return;
             }

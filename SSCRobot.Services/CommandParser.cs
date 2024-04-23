@@ -24,7 +24,7 @@ namespace SSCRobot.Services
         /// </summary>
         /// <param name="commandString"></param>
         /// <returns>An implementation of <see cref="ICommand"/> or <see langword="null"/> if invalid</returns>
-        public static ICommand? Parse(string commandString)
+        public static ICommand? Parse(string? commandString)
         {
             if (string.IsNullOrWhiteSpace(commandString))
             {
@@ -93,8 +93,7 @@ namespace SSCRobot.Services
             return new PlaceCommand
             {
                 Name = commandName,
-                PositionX = inputX,
-                PositionY = inputY,
+                Position = new System.Drawing.Point(inputX, inputY),
                 FacingDirection = direction,
             };
         }
