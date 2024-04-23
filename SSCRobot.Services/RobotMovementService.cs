@@ -75,7 +75,7 @@ namespace SSCRobot.Services
         }
 
         /// <summary>
-        /// Turns left
+        /// Turns left. The direction is relative to the robot.
         /// </summary>
         /// <param name="robot"></param>
         public void TurnLeft(Robot robot)
@@ -87,7 +87,7 @@ namespace SSCRobot.Services
         }
 
         /// <summary>
-        /// Turns right
+        /// Turns right. The direction is relative to the robot.
         /// </summary>
         /// <param name="robot"></param>
         public void TurnRight(Robot robot)

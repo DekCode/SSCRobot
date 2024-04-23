@@ -27,6 +27,11 @@
         /// <param name="height"></param>
         public Board(int width, int height)
         {
+            if (width <= 0 || height <= 0)
+            {
+                throw new ArgumentException("The width and the height must be greater than zero to create a 2-D board here.");
+            }
+
             Grid = new int[width, height];
             Width = width;
             Height = height;
