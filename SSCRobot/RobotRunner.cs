@@ -17,12 +17,38 @@ namespace SSCRobot
 
         private readonly RobotMovementService _movementService = new();
         private readonly RobotPlacementService _placementService = new();
+        private readonly IInputProvider _inputProvider;
+        private readonly IOutputProvider _outputProvider;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="inputProvider"></param>
+        /// <param name="outputProvider"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public RobotRunner(IInputProvider inputProvider, IOutputProvider outputProvider)
+        {
+            _inputProvider = inputProvider ?? throw new ArgumentNullException(nameof(inputProvider));
+            _outputProvider = outputProvider ?? throw new ArgumentNullException(nameof(outputProvider));
+        }
+
+        /// <summary>
+        /// Runs the robot app
+        /// </summary>
+        /// <param name="inputProvider"></param>
+        /// <param name="outputProvider"></param>
         public void Run()
         {
             while (true)
             {
-                var userInput = Console.ReadLine();
+                // Read from user input
+                var userInput = _inputProvider.Read();
+                // Just to quit the app
+                if (userInput != null && userInput.Equals("q", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return;
+                }
+
                 // Ignore anything except for the PLACE command if we haven't placed the robot
                 if (_robot == null)
                 {
@@ -52,7 +78,6 @@ namespace SSCRobot
                     }
                     else if (command.Name == CommandDefaults.Report)
                     {
-                        // TODO: output
                         DisplayRobotPosition();
                     }
                 }
@@ -79,7 +104,7 @@ namespace SSCRobot
                 return;
             }
 
-            Console.WriteLine($"{_robot.Position.X} {_robot.Position.Y} {_robot.FacingDirection.ToString().ToUpperInvariant()}");
+            _outputProvider.Write($"{_robot.Position.X} {_robot.Position.Y} {_robot.FacingDirection.ToString().ToUpperInvariant()}");
         }
     }
 }

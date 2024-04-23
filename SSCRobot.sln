@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSCRobot.Common", "SSCRobot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSCRobot.Services.Tests", "SSCRobot.Services.Tests\SSCRobot.Services.Tests.csproj", "{C111564B-B498-4A43-8066-60A0AF06781C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSCRobot.Tests", "SSCRobot.Tests\SSCRobot.Tests.csproj", "{4503675E-2DA0-4FC3-AD7E-749E52D02BF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +37,17 @@ Global
 		{C111564B-B498-4A43-8066-60A0AF06781C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C111564B-B498-4A43-8066-60A0AF06781C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C111564B-B498-4A43-8066-60A0AF06781C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4503675E-2DA0-4FC3-AD7E-749E52D02BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4503675E-2DA0-4FC3-AD7E-749E52D02BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4503675E-2DA0-4FC3-AD7E-749E52D02BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4503675E-2DA0-4FC3-AD7E-749E52D02BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C111564B-B498-4A43-8066-60A0AF06781C} = {84EA56A4-EC59-410A-9C92-4F82DE91B1A0}
+		{4503675E-2DA0-4FC3-AD7E-749E52D02BF4} = {84EA56A4-EC59-410A-9C92-4F82DE91B1A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10F017FA-9409-44F9-BAC3-8AAE4F14D7AB}
