@@ -7,21 +7,21 @@ namespace SSCRobot.Common.Models
         /// <summary>
         /// Command name
         /// </summary>
-        public string Name { get; set; } = null!;
+        public string Name { get; init; } = null!;
 
         /// <summary>
         /// Position X
         /// </summary>
-        public int PositionX { get; set; }
+        public int PositionX { get; init; }
 
         /// <summary>
         /// Position Y
         /// </summary>
-        public int PositionY { get; set; }
+        public int PositionY { get; init; }
 
         /// <summary>
         /// Facing direction
         /// </summary>
-        public DirectionType FacingDirection { get; set; }
+        public DirectionType FacingDirection { get; init; }
     }
 }

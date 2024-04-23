@@ -1,12 +1,12 @@
 ﻿using SSCRobot.Common.Constants;
 using SSCRobot.Common.Enums;
 using SSCRobot.Common.Models;
-using System.Windows.Input;
+using ICommand = SSCRobot.Common.Models.ICommand;
 
 namespace SSCRobot.Services
 {
     /// <summary>
-    /// A command parser
+    /// The robot case-insensitive command parser
     /// </summary>
     public static class CommandParser
     {
@@ -41,51 +41,62 @@ namespace SSCRobot.Services
                 };
             }
 
-            // Parse a place command
+            // Parse a place command if it starts with 'place'
             if (capitalizedInput.StartsWith(CommandDefaults.Place))
             {
-                var parts = capitalizedInput.Split(' ');
-                // Expect the command and the argument
-                // Eg: PLACE 1,2,NORTH
-                if (parts.Length != 2)
-                {
-                    return null;
-                }
-                var commandName = parts[0];
-                var arguments = parts[1].Split(',');
-                // Expect the coordinate (x,y) and the facing direction
-                // Eg: 1,2,NORTH
-                if (arguments.Length != 3)
-                {
-                    return null;
-                }
-
-                // Validate data type. Expect [number number FacingDirection]
-                if (!int.TryParse(arguments[0], out var inputX))
-                {
-                    return null;
-                }
-
-                if (!int.TryParse(arguments[1], out var inputY))
-                {
-                    return null;
-                }
-
-                if (!Enum.TryParse<DirectionType>(arguments[2], ignoreCase: true, out var direction))
-                {
-                    return null;
-                }
-
-                return new PlaceCommand
-                {
-                    PositionX = inputX,
-                    PositionY = inputY,
-                    FacingDirection = direction,
-                };
+                return ParsePlaceCommand(capitalizedInput);
             }
 
             // Return null if invalid
             return null;
+        }
+
+        /// <summary>
+        /// Parses the <see cref="CommandDefaults.Place"/> command and its arguments
+        /// </summary>
+        /// <param name="capitalizedInput"></param>
+        /// <returns></returns>
+        private static IPlaceCommand? ParsePlaceCommand(string capitalizedInput)
+        {
+            var parts = capitalizedInput.Split(' ');
+            // Expect the command and the argument
+            // Eg: PLACE 1,2,NORTH
+            if (parts.Length != 2)
+            {
+                return null;
+            }
+            var commandName = parts[0];
+            var arguments = parts[1].Split(',');
+            // Expect the coordinate (x,y) and the facing direction
+            // Eg: 1,2,NORTH
+            if (arguments.Length != 3)
+            {
+                return null;
+            }
+
+            // Validate data type. Expect [number number FacingDirection]
+            if (!int.TryParse(arguments[0], out var inputX))
+            {
+                return null;
+            }
+
+            if (!int.TryParse(arguments[1], out var inputY))
+            {
+                return null;
+            }
+
+            if (!Enum.TryParse<DirectionType>(arguments[2], ignoreCase: true, out var direction))
+            {
+                return null;
+            }
+
+            return new PlaceCommand
+            {
+                Name = commandName,
+                PositionX = inputX,
+                PositionY = inputY,
+                FacingDirection = direction,
+            };
         }
     }
 }
