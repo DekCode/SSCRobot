@@ -104,7 +104,7 @@ namespace SSCRobot
                 return;
             }
 
-            _outputProvider.Write($"{_robot.Position.X} {_robot.Position.Y} {_robot.FacingDirection.ToString().ToUpperInvariant()}");
+            _outputProvider.Write($"Output: {_robot.Position.X} {_robot.Position.Y} {_robot.FacingDirection.ToString().ToUpperInvariant()}");
         }
     }
 }

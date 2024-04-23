@@ -44,11 +44,83 @@ namespace SSCRobot.Tests
             demo.Run();
 
             // Assert
-            mockOutputProvider.Verify(x => x.Write("1 0 EAST"), Times.Exactly(2));
-            mockOutputProvider.Verify(x => x.Write("1 0 SOUTH"), Times.Once);
-            mockOutputProvider.Verify(x => x.Write("1 0 NORTH"), Times.Once);
-            mockOutputProvider.Verify(x => x.Write("1 1 NORTH"), Times.Once);
-            mockOutputProvider.Verify(x => x.Write("1 2 NORTH"), Times.Once);
+            mockOutputProvider.Verify(x => x.Write("Output: 1 0 EAST"), Times.Exactly(2));
+            mockOutputProvider.Verify(x => x.Write("Output: 1 0 SOUTH"), Times.Once);
+            mockOutputProvider.Verify(x => x.Write("Output: 1 0 NORTH"), Times.Once);
+            mockOutputProvider.Verify(x => x.Write("Output: 1 1 NORTH"), Times.Once);
+            mockOutputProvider.Verify(x => x.Write("Output: 1 2 NORTH"), Times.Once);
+        }
+
+        [Fact]
+        public void Run_WhenOperationIsSuccessful_TestCaseA()
+        {
+            // Arrange
+            var mockInputProvider = new Mock<IInputProvider>();
+            var mockOutputProvider = new Mock<IOutputProvider>();
+
+            mockInputProvider.SetupSequence(x => x.Read())
+                .Returns("PLACE 0,0,NORTH")
+                .Returns("MOVE")
+                .Returns("REPORT")
+
+                .Returns("q");
+
+            var demo = new RobotRunner(mockInputProvider.Object, mockOutputProvider.Object);
+
+            // Act
+            demo.Run();
+
+            // Assert
+            mockOutputProvider.Verify(x => x.Write("Output: 0 1 NORTH"), Times.Once);
+        }
+
+        [Fact]
+        public void Run_WhenOperationIsSuccessful_TestCaseB()
+        {
+            // Arrange
+            var mockInputProvider = new Mock<IInputProvider>();
+            var mockOutputProvider = new Mock<IOutputProvider>();
+
+            mockInputProvider.SetupSequence(x => x.Read())
+                .Returns("PLACE 0,0,NORTH")
+                .Returns("LEFT")
+                .Returns("REPORT")
+
+                .Returns("q");
+
+            var demo = new RobotRunner(mockInputProvider.Object, mockOutputProvider.Object);
+
+            // Act
+            demo.Run();
+
+            // Assert
+            mockOutputProvider.Verify(x => x.Write("Output: 0 0 WEST"), Times.Once);
+        }
+
+        [Fact]
+        public void Run_WhenOperationIsSuccessful_TestCaseC()
+        {
+            // Arrange
+            var mockInputProvider = new Mock<IInputProvider>();
+            var mockOutputProvider = new Mock<IOutputProvider>();
+
+            mockInputProvider.SetupSequence(x => x.Read())
+                .Returns("PLACE 1,2,EAST")
+                .Returns("MOVE")
+                .Returns("MOVE")
+                .Returns("LEFT")
+                .Returns("MOVE")
+                .Returns("REPORT")
+
+                .Returns("q");
+
+            var demo = new RobotRunner(mockInputProvider.Object, mockOutputProvider.Object);
+
+            // Act
+            demo.Run();
+
+            // Assert
+            mockOutputProvider.Verify(x => x.Write("Output: 3 3 NORTH"), Times.Once);
         }
 
         [Fact]
