@@ -23,7 +23,7 @@ namespace SSCRobot.Services
         /// <para>PLACE 1,2,NORTH</para>
         /// </summary>
         /// <param name="commandString"></param>
-        /// <returns>An implementation of <see cref="ICommand"/></returns>
+        /// <returns>An implementation of <see cref="ICommand"/> or <see langword="null"/> if invalid</returns>
         public static ICommand? Parse(string commandString)
         {
             if (string.IsNullOrWhiteSpace(commandString))

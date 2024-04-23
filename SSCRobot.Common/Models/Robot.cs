@@ -1,4 +1,5 @@
 ﻿using SSCRobot.Common.Enums;
+using System.Drawing;
 
 namespace SSCRobot.Common.Models
 {
@@ -8,14 +9,9 @@ namespace SSCRobot.Common.Models
     public class Robot
     {
         /// <summary>
-        /// Position X
+        /// Position
         /// </summary>
-        public int PositionX { get; set; }
-
-        /// <summary>
-        /// Position Y
-        /// </summary>
-        public int PositionY { get; set; }
+        public Point Position { get; set; }
 
         /// <summary>
         /// Facing direction

@@ -5,7 +5,20 @@
     /// </summary>
     public class Board
     {
-        public int[,] Grid { get; set; }
+        /// <summary>
+        /// The (0,0) based grid
+        /// </summary>
+        public int[,] Grid { get; }
+
+        /// <summary>
+        /// Width
+        /// </summary>
+        public int Width { get; init; }
+
+        /// <summary>
+        /// Height
+        /// </summary>
+        public int Height { get; init; }
 
         /// <summary>
         /// Initilizes a new board with the specified dimension.
@@ -15,6 +28,8 @@
         public Board(int width, int height)
         {
             Grid = new int[width, height];
+            Width = width;
+            Height = height;
         }
     }
 }
